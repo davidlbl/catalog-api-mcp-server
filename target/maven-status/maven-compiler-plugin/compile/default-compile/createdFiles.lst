@@ -1,0 +1,8 @@
+com\inditex\catalog_api_mcp_server\model\Product.class
+com\inditex\catalog_api_mcp_server\PCApiMcpServerApplication.class
+com\inditex\catalog_api_mcp_server\model\ProductSnowFlake.class
+com\inditex\catalog_api_mcp_server\model\Status.class
+com\inditex\catalog_api_mcp_server\model\Xmedia.class
+com\inditex\catalog_api_mcp_server\model\CC.class
+com\inditex\catalog_api_mcp_server\model\CCSnowFlake.class
+com\inditex\catalog_api_mcp_server\service\EcommerceService.class
