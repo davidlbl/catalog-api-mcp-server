@@ -33,6 +33,10 @@ Al iniciar, se debera seleccionar la opción de agent y aparecerán todas las `t
 
 ### Validación
 
-Ya teniendo todo, se podrá preguntar información que tenga el MCP, según lo configurado en las [tools definidas](./src/main/java/com/inditex/catalog_api_mcp_server/service/EcommerceService.java#29)
+Ya teniendo todo, se podrá preguntar información que tenga el MCP, según lo configurado en las [tools definidas](https://github.com/davidlbl/catalog-api-mcp-server/blob/main/src/main/java/com/inditex/catalog_api_mcp_server/service/EcommerceService.java#L29)
 
 ![img](./images/img_3.png)
+
+### Documentación relacionada
+
+https://docs.spring.io/spring-ai/reference/api/tools.html
