@@ -26,24 +26,115 @@ public class EcommerceService {
         this.ccsInSnowFlake = initCCsInSnowFlake();
     }
     
-    @Tool(description = "get the product details by product (product identifier) and store (store identifier). This is know as product or product service")
-    public Product getProductDetails(@ToolParam(description = "Product identifier, also known as product.") String productId, @ToolParam(description = "Store identifier, also know as store o storeId") String storeId) {
+    @Tool(
+            description = """
+              Get the details of a product in snowflake using its unique product identifier (productId) and the store identifier (storeId).
+
+              Also known as:
+              This method may be referred to as product, product service, product core, product reader or reader.
+            """)
+    public Product getProductDetails(
+            @ToolParam(
+                    description = """
+                      Identifier of the product, which may also be referred to as product.
+                      Rules:
+                        - It must follow a numeric format.
+                    """
+            ) final String productId,
+            @ToolParam(
+                    description = """
+                      Identifier of the store, also known as store or storeId.
+                      Rules:
+                        - It must follow a numeric format.
+                        - The only valid values are: 10701 and 10702.
+                        - If no value is provided, the default value will be 10701.
+                    """
+            ) final String storeId) {
         return products.stream().filter(product -> product.id().equals(productId)).findFirst().orElse(null);
     }
     
-    @Tool(description = "get the CCId (Comercial component id) details by CC (comercial component identifier) and store (store identifier). This is know as grid or grids service")
-    public CC getCCDetails(@ToolParam(description = "Commercial component identifier, also known as CC, CCId, styling, or product.") String ccId, @ToolParam(description = "Store identifier, also know as store o storeId") String storeId) {
+    @Tool(
+            description = """
+             Get the details of a Commercial Component (CC) using its unique identifier (ccId) and the store identifier (storeId).
+
+             Common aliases:
+             This method may also be referred to as grid, grids, or gridCore.
+            """
+    )
+    public CC getCCDetails(
+            @ToolParam(
+                    description = """
+                      Identifier of the Commercial Component, which may also be referred to as CC, ccId, styling, or product.
+                      Rules:
+                        - It must follow a numeric format.
+                    """
+            ) final String ccId, 
+            @ToolParam(
+                    description = """
+                      Identifier of the store, also known as store or storeId.
+                      Rules:
+                        - It must follow a numeric format.
+                        - The only valid values are: 10701 and 10702.
+                        - If no value is provided, the default value will be 10701.
+                    """
+            ) final String storeId) {
         return ccs.stream().filter(cc -> cc.id().equals(ccId)).findFirst().orElse(null);
     }
 
-    @Tool(description = "get the CC details in snowflake by CCId (Comercial component id) and store (store identifier). This is know as grid or grids service")
-    public ProductSnowFlake getCCDetailsInSnowflake(@ToolParam(description = "Commercial component identifier, also known as CC, CCId, styling, or product.") String ccId, @ToolParam(description = "Store identifier, also know as store o storeId") String storeId) {
-        return productsInSnowFlake.stream().filter(product -> product.product().id().equals(ccId)).findFirst().orElse(null);
+    @Tool(
+            description = """
+             Retrieves the details of a Commercial Component (CC) in snowflake using its unique identifier (ccId) and the store identifier (storeId).
+
+             Common aliases:
+             This method may also be referred to as grid, grids, or gridCore.
+            """)
+    public CCSnowFlake getCCDetailsInSnowflake(
+            @ToolParam(
+                    description = """
+                      Identifier of the Commercial Component, which may also be referred to as CC, ccId, styling, or product.
+                      Rules:
+                        - It must follow a numeric format.
+                    """
+            ) final String ccId,
+            @ToolParam(
+                    description = """
+                      Identifier of the store, also known as store or storeId.
+                      Rules:
+                        - It must follow a numeric format.
+                        - The only valid values are: 10701 and 10702.
+                        - If no value is provided, the default value will be 10701.
+                    """
+            ) final String storeId) {
+       
+        return ccsInSnowFlake.stream().filter(item -> item.cc().id().equals(ccId)).findFirst().orElse(null);
     }
 
-    @Tool(description = "Get the product details in snowflake by product (product identifier) and store (store identifier). This is know as product or product service")
-    public CCSnowFlake getProductDetailsInSnowflake(@ToolParam(description = "Product identifier, also known as product.") String productId, @ToolParam(description = "Store identifier, also know as store o storeId") String storeId) {
-        return ccsInSnowFlake.stream().filter(product -> product.cc().id().equals(productId)).findFirst().orElse(null);
+    @Tool(
+            description = """
+             Get the details of a product in snowflake using its unique product identifier (productId) and the store identifier (storeId).
+
+             Common aliases:
+                    This method may be referred to as product, product service, product core, product reader or reader.
+            """
+    )
+    public ProductSnowFlake getProductDetailsInSnowflake(
+            @ToolParam(
+                    description = """
+                      Identifier of the product, which may also be referred to as product.
+                      Rules:
+                        - It must follow a numeric format.
+                    """
+            ) final String productId,
+            @ToolParam(
+                    description = """
+                      Identifier of the store, also known as store or storeId.
+                      Rules:
+                        - It must follow a numeric format.
+                        - The only valid values are: 10701 and 10702.
+                        - If no value is provided, the default value will be 10701.
+                    """
+            ) final String storeId) {
+        return productsInSnowFlake.stream().filter(item -> item.product().id().equals(productId)).findFirst().orElse(null);
     }
 
     private List<Product> initProducts() {
